@@ -7,7 +7,7 @@
 - 9×9以下のぽぽスイーパー
 
     ```
-    $ps <size> <bomb>
+    p:s <size> <bomb>
     (sizeは1から9まで，bombはsizeの2乗以下をそれぞれ指定してください．)
     ```
 
@@ -19,6 +19,15 @@ PythonによるDiscordBotのアプリケーションファイル
 
 ### requirements.txt
 使用しているPythonのライブラリ情報の設定ファイル
+
+### .env.sample
+Botのトークンを指定するためのファイル
+
+```Python
+DISCORD_BOT_TOKEN = "YOUR TOKEN GOES HERE"
+```
+
+としてファイル名を`.env`に変更する
 
 ### Procfile
 Herokuでのプロセス実行コマンドの設定ファイル
