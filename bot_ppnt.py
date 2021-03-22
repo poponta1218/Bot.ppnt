@@ -4,7 +4,6 @@ import random
 import os
 
 client = discord.Client()
-DISCORD_BOT_TOKEN = os.environ["DISCORD_BOT_TOKEN"]
 
 
 @client.event
@@ -50,10 +49,10 @@ async def reply(message):
 
 
 async def pcommand(message):
-    if message.content.startswith("$ps"):
+    if message.content.startswith("p:s"):
         arg = message.content.split()
         if arg[1] in ["", "-h", "-help", "--help"]:
-            reply = "USAGE:If you play poposweeper, type '$ps <size [0-9]> <bomb [0-size^2]>'."
+            reply = "USAGE:If you play poposweeper, type 'p:s <size [0-9]> <bomb [0-size^2]>'."
             await message.channel.send(reply)
         elif not (set(arg[1]) <= set("1234567890１２３４５６７８９０") and set(arg[2]) <= set("1234567890１２３４５６７８９０")):
             reply = "ERROR:Specified argument was out of the range of valid values."
