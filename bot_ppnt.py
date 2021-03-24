@@ -7,8 +7,8 @@ import traceback
 bot = commands.Bot(command_prefix="p:")
 
 PCOMMANDS = [
-    "commands.psweeper",
-    "commands.phelp"
+    "commands.phelp",
+    "commands.psweeper"
 ]
 
 for cog in PCOMMANDS:
@@ -51,10 +51,9 @@ async def reply(message):
             rand = random.randint(1, 100)
             if rand >= 70:
                 await message.channel.send("だまれ")
+            elif rand >= 40:
                 await message.add_reaction("😡")
-            elif rand >= 30:
-                return
-            elif rand == 1 or random.randint(2, 29):
+            elif rand <= random.randint(2, 4):
                 await message.add_reaction("🥰")
             else:
                 return
