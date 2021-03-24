@@ -17,6 +17,11 @@
 ### bot_ppnt.py
 PythonによるDiscordBotのアプリケーションファイル
 
+### commands
+Botで使用するコマンドを格納するフォルダ
+- `psweeper.py`
+- `phelp.py`
+
 ### requirements.txt
 使用しているPythonのライブラリ情報の設定ファイル
 
