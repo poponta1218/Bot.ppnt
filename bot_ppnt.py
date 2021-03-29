@@ -8,7 +8,8 @@ bot = commands.Bot(command_prefix="p:")
 
 PCOMMANDS = [
     "commands.phelp",
-    "commands.psweeper"
+    "commands.psweeper",
+    "commands.pfuck"
 ]
 
 for cog in PCOMMANDS:
@@ -43,7 +44,8 @@ async def reply(message):
         return
     else:
         if (random.randint(1, 100) >= 85
-                or "ぽぽんた" in message.content or ":poponta:" in message.content or ":poponting:" in message.content):
+                or "ぽぽんた" in message.content or ":poponta:" in message.content
+                or ":poponting:" in message.content or ":thinking:" in message.content):
             await message.add_reaction("🤔")
         if bot.user in message.mentions:
             await message.channel.send("何もできません...弱くて申し訳ない :crying_cat_face:")
