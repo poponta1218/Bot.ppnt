@@ -5,11 +5,7 @@
 - ユーザーが発言した場合にリアクションを返したりメッセージを送信する
 - このBotに対してメンションした場合にメッセージを送信する
 - 9×9以下のぽぽスイーパー
-
-    ```
-    p:s <size> <bomb>
-    (sizeは1から9まで，bombはsizeの2乗以下をそれぞれ指定してください．)
-    ```
+- poponfuck(brainfuckの方言)の実行
 
 
 ## 構成
@@ -19,8 +15,9 @@ PythonによるDiscordBotのアプリケーションファイル
 
 ### commands
 Botで使用するコマンドを格納するフォルダ
-- `psweeper.py`
 - `phelp.py`
+- `psweeper.py`
+- `pfuck.py`
 
 ### requirements.txt
 使用しているPythonのライブラリ情報の設定ファイル
