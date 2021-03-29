@@ -7,7 +7,7 @@ class Pcommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="s")
+    @commands.command(name="psweeper", aliases=["s", "ps", "sweeper", "sweep"])
     async def poposweeper(self, ctx, *args):
         if args[0] in ["-h", "-help", "--help"]:
             reply = "USAGE: If you play poposweeper, type 'p:s <size [0-9]> <mine [0-size^2]>'."
