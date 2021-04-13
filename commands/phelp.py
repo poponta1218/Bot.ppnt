@@ -59,9 +59,9 @@ class Pcommands(commands.Cog):
             embed.add_field(
                 name="`p:helps [lang]`",
                 value="""\
-                As you see, You can check the usage of this bot.
+                As you see, you can check how to use this bot.
                 For lang, give a language code based on ISO 639. e.g. ja, en
-                If lang is not given, displayed in Japanese.
+                If not given lang, display in Japanese.
                 Alias: `h`
                 """,
                 inline=False
@@ -71,6 +71,7 @@ class Pcommands(commands.Cog):
                 value="""\
                 You can play poposweeper.
                 For size, specify a positive integer from 1 to 9, and for mine, give an integer from 0 to size squared.
+                For example, if size is 6, you can specify mine from 0 to 36.
                 Aliases: `s, ps, sweep, sweeper`
                 """,
                 inline=False
@@ -78,7 +79,7 @@ class Pcommands(commands.Cog):
             embed.add_field(
                 name="`p:poponfuck [script]`",
                 value="""\
-                    You can run Poponfuck script. To separate each commands, insert half-width space between emoji.
+                    You can run Poponfuck script. To separate each command, insert half-width space between emojis.
                     Commands
                     +: :thinking:
                     -: :rage:
