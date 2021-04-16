@@ -11,13 +11,31 @@ class Pcommands(commands.Cog):
     async def poponfuck(self, ctx, *, tape: str):
         ptr = 0  # pointer
         pc = 0  # program_counter
-        mem = {}
+        mem = {}  # memory
         message = ""
         outbytes = b""
         start = time.time()
 
-        tape = tape.replace(":thinking::thinking:", ">").replace(":rage::rage:", "<").replace(":thinking::rage:", "[").replace(":rage::thinking:", "]").replace(":thinking:", "+").replace(":rage:", "-").replace(":crying_cat_face:", ".")
-        tape = tape.replace("🤔🤔", ">").replace("😡😡", "<").replace("🤔😡", "[").replace("😡🤔", "]").replace("🤔", "+").replace("😡", "-").replace("😿", ".").replace(" ", "")
+        token_table = {
+            ":thinking::thinking:": ">",
+            ":rage::rage:": "<",
+            ":thinking::rage:": "[",
+            ":rage::thinking:": "]",
+            ":thinking:": "+",
+            ":rage:": "-",
+            ":crying_cat_face:": ".",
+            "🤔🤔": ">",
+            "😡😡": "<",
+            "🤔😡": "[",
+            "😡🤔": "]",
+            "🤔": "+",
+            "😡": "-",
+            "😿": ".",
+            " ": ""
+        }
+
+        for emoji, instr in token_table.items():
+            tape = tape.replace(emoji, instr)
 
         while pc < len(tape):
             if ptr not in mem:
