@@ -37,7 +37,7 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     await reaction(message)
-    await url(message)
+    await encode_url(message)
     await bot.process_commands(message)
 
 
@@ -67,23 +67,26 @@ async def reaction(message):
 
 
 @bot.event
-async def url(message):
+async def encode_url(message):
     if message.author.bot:
         return
     else:
-        pattern = "https?://\\S+\\.\\S+"
+        pattern = r"https?://\S+\.\S+"
         url_list = re.findall(pattern, message.content)
         for url in url_list:
-            query = urllib.parse.urlparse(url).query
-            replaced_url = url.replace(")", "%29").replace("?" + query, "")
+            if url[-1] == "`":
+                url = url[:-1]
+            domain = urllib.parse.urlparse(url).netloc
+            domain_idna = str(domain.encode("idna"), "utf-8")
+            query = urllib.parse.urlparse(url).query.replace("＋", "%2B")
+            replaced_url = url.replace(domain, domain_idna).replace("＋", "%2B").replace("?" + query, "")
             q_dic = urllib.parse.parse_qs(query)
             for key in q_dic:
                 q_dic[key] = q_dic[key][0]
             encoded_query = urllib.parse.urlencode(q_dic)
+            encoded_url = urllib.parse.quote(replaced_url, safe=":/%")
             if encoded_query != "":
-                encoded_url = urllib.parse.quote(replaced_url, safe=':/%') + "?" + encoded_query
-            else:
-                encoded_url = urllib.parse.quote(replaced_url, safe=':/%')
+                encoded_url += "?" + encoded_query
             if url != encoded_url:
                 await message.channel.send(encoded_url)
 
