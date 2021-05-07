@@ -3,6 +3,7 @@ from discord.ext import commands
 import discord
 import random
 import traceback
+import urllib.parse
 import re
 
 bot = commands.Bot(command_prefix="p:")
@@ -35,21 +36,22 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    await reply(message)
+    await reaction(message)
+    await encode_url(message)
     await bot.process_commands(message)
 
 
 @bot.event
-async def reply(message):
-    if message.author == bot.user:
+async def reaction(message):
+    if message.author.bot:
         return
     else:
         if (random.randint(1, 100) >= 85
-                or re.search(r".*(ぽぽんた|:poponta:|:poponting:|:thinking:).*", message.content)):
+                or re.search(r"ぽぽんた|:poponta:|:poponting:|:thinking:|🤔", message.content)):
             await message.add_reaction("🤔")
         if bot.user in message.mentions:
             await message.channel.send("何もできません...弱くて申し訳ない :crying_cat_face:")
-        if re.search(r".?笑+", message.content) or message.content in ["卍"]:
+        if re.search(r":rage:|😡|笑|卍", message.content):
             await message.add_reaction("😡")
             await message.channel.send(":rage:")
         if message.author.id == 649911196694216707:  # りゅう
@@ -62,6 +64,31 @@ async def reply(message):
                 await message.add_reaction("🥰")
             else:
                 return
+
+
+@bot.event
+async def encode_url(message):
+    if message.author.bot:
+        return
+    else:
+        pattern = r"https?://\S+\.\S+"
+        url_list = re.findall(pattern, message.content)
+        for url in url_list:
+            if url[-1] == "`":
+                url = url[:-1]
+            domain = urllib.parse.urlparse(url).netloc
+            domain_idna = str(domain.encode("idna"), "utf-8")
+            query = urllib.parse.urlparse(url).query.replace("＋", "%2B")
+            replaced_url = url.replace(domain, domain_idna).replace("＋", "%2B").replace("?" + query, "")
+            q_dic = urllib.parse.parse_qs(query)
+            for key in q_dic:
+                q_dic[key] = q_dic[key][0]
+            encoded_query = urllib.parse.urlencode(q_dic)
+            encoded_url = urllib.parse.quote(replaced_url, safe=":/%")
+            if encoded_query != "":
+                encoded_url += "?" + encoded_query
+            if url != encoded_url:
+                await message.channel.send(encoded_url)
 
 
 bot.run(DISCORD_BOT_TOKEN)
