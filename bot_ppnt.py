@@ -73,6 +73,7 @@ async def encode_url(message):
     else:
         pattern = r"https?://\S+\.\S+"
         url_list = re.findall(pattern, message.content)
+        send_list = ""
         for url in url_list:
             if url[-1] == "`":
                 url = url[:-1]
@@ -84,11 +85,15 @@ async def encode_url(message):
             for key in q_dic:
                 q_dic[key] = q_dic[key][0]
             encoded_query = urllib.parse.urlencode(q_dic)
-            encoded_url = urllib.parse.quote(replaced_url, safe=":/%")
+            encoded_url = urllib.parse.quote(replaced_url, safe=":/%#")
             if encoded_query != "":
                 encoded_url += "?" + encoded_query
             if url != encoded_url:
-                await message.channel.send(encoded_url)
+                send_list += encoded_url
+                if url != url_list[-1]:
+                    send_list += "\n"
+        if send_list != "":
+            await message.reply(send_list[:2000], allowed_mentions=discord.AllowedMentions(replied_user=False))
 
 
 bot.run(DISCORD_BOT_TOKEN)
