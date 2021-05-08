@@ -75,8 +75,7 @@ async def encode_url(message):
         url_list = re.findall(pattern, message.content)
         send_list = ""
         for url in url_list:
-            if url[-1] == "`":
-                url = url[:-1]
+            url = re.sub(r'>?(`|```)?$', '', url)
             domain = urllib.parse.urlparse(url).netloc
             domain_idna = str(domain.encode("idna"), "utf-8")
             query = urllib.parse.urlparse(url).query.replace("＋", "%2B")
@@ -89,7 +88,7 @@ async def encode_url(message):
             if encoded_query != "":
                 encoded_url += "?" + encoded_query
             if url != encoded_url:
-                send_list += encoded_url
+                send_list += "<" + encoded_url + ">"
                 if url != url_list[-1]:
                     send_list += "\n"
         if send_list != "":
