@@ -1,4 +1,4 @@
-from config import DISCORD_BOT_TOKEN
+from settings import DISCORD_BOT_TOKEN
 from discord.ext import commands
 import discord
 import random
