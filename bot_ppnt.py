@@ -51,6 +51,8 @@ async def reaction(message):
             await message.add_reaction("🤔")
         if bot.user in message.mentions:
             await message.channel.send("何もできません...弱くて申し訳ない :crying_cat_face:")
+        if "にゃーん" in message.content:
+            await message.add_reaction("😿")
         if re.search(r":rage:|😡|笑|卍", message.content):
             await message.add_reaction("😡")
             await message.channel.send(":rage:")
@@ -75,7 +77,7 @@ async def encode_url(message):
         url_list = re.findall(pattern, message.content)
         send_list = ""
         for url in url_list:
-            url = re.sub(r'>?(`|```)?$', '', url)
+            url = re.sub(">?(`|```)?(\"|\'|\"\"\"|\'\'\')?(`|```)?$", "", url)
             domain = urllib.parse.urlparse(url).netloc
             domain_idna = str(domain.encode("idna"), "utf-8")
             query = urllib.parse.urlparse(url).query.replace("＋", "%2B")
