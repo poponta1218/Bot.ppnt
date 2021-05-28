@@ -11,7 +11,8 @@ bot = commands.Bot(command_prefix="p:")
 PCOMMANDS = [
     "commands.phelp",
     "commands.psweeper",
-    "commands.pfuck"
+    "commands.pfuck",
+    "commands.pchem"
 ]
 
 for cog in PCOMMANDS:

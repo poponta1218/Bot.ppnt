@@ -7,6 +7,7 @@
 - 文章中のURLをパーセントエンコーディングする
 - 9×9以下のぽぽスイーパー
 - poponfuck(brainfuckの方言)の実行
+- 構造式の描画
 
 
 ## 構成
@@ -19,3 +20,4 @@ Botで使用するコマンドを格納するフォルダ
 - `phelp.py`
 - `psweeper.py`
 - `pfuck.py`
+- `pchem.py`

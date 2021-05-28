@@ -50,6 +50,15 @@ class Pcommands(commands.Cog):
                 """,
                 inline=False
             )
+            embed.add_field(
+                name="`p:popochem [化合物名]`",
+                value="""\
+                    化合物名から構造式を検索できます．
+                    また，IUPAC名や分子式，分子量も表示されます．
+                    エイリアス: `pc, pchem, chem, c`
+                """,
+                inline=False
+            )
         elif lang == "en":
             embed = discord.Embed(
                 title="Bot.ppnt",
@@ -89,6 +98,15 @@ class Pcommands(commands.Cog):
                     ]: :rage::thinking:
                     .: :crying_cat_face:
                     Aliases: `pf, pfuck`
+                """,
+                inline=False
+            )
+            embed.add_field(
+                name="`p:popochem [compound name]`",
+                value="""\
+                    You can search for structural formula by compound name.
+                    Also, IUPAC name, molecular formula and its weight are displayed.
+                    Aliases: `pc, pchem, chem, c`
                 """,
                 inline=False
             )
@@ -132,6 +150,15 @@ class Pcommands(commands.Cog):
                     ]: :rage::thinking:
                     .: :crying_cat_face:
                     エイリアス: `pf, pfuck`
+                """,
+                inline=False
+            )
+            embed.add_field(
+                name="`p:popochem [化合物名]`",
+                value="""\
+                    化合物名から構造式を検索できます．
+                    また，IUPAC名や分子式，分子量も表示されます．
+                    エイリアス: `pc, pchem, chem, c`
                 """,
                 inline=False
             )
