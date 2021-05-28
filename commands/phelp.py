@@ -51,7 +51,7 @@ class Pcommands(commands.Cog):
                 inline=False
             )
             embed.add_field(
-                name="`p:popochem [化合物名]`",
+                name="`p:popochem [name]`",
                 value="""\
                     化合物名から構造式を検索できます．
                     また，IUPAC名や分子式，分子量も表示されます．
@@ -102,7 +102,7 @@ class Pcommands(commands.Cog):
                 inline=False
             )
             embed.add_field(
-                name="`p:popochem [compound name]`",
+                name="`p:popochem [name]`",
                 value="""\
                     You can search for structural formula by compound name.
                     Also, IUPAC name, molecular formula and its weight are displayed.
@@ -154,7 +154,7 @@ class Pcommands(commands.Cog):
                 inline=False
             )
             embed.add_field(
-                name="`p:popochem [化合物名]`",
+                name="`p:popochem [name]`",
                 value="""\
                     化合物名から構造式を検索できます．
                     また，IUPAC名や分子式，分子量も表示されます．
